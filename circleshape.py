@@ -1,4 +1,5 @@
 import pygame
+from pygame.rect import Rect
 
 # Base class for game objects
 class CircleShape(pygame.sprite.Sprite):
@@ -15,7 +16,7 @@ class CircleShape(pygame.sprite.Sprite):
         self.velocity = pygame.Vector2(0, 0)
         self.radius = radius
 
-    def draw(self, screen: pygame.Surface) -> None:
+    def draw(self, screen: pygame.Surface) -> Rect:
         # must override
         pass
 
