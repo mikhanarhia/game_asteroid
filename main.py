@@ -1,4 +1,6 @@
 import pygame
+import sys
+from logger import log_event
 from pygame.time import Clock
 from asteroid import Asteroid
 import constants
@@ -32,9 +34,14 @@ def main():
 
         dt = game_clock.tick(60) / 1000
         screen.fill("black")
-        updatable.update(dt)
         for drawer in drawable:
             drawer.draw(screen)
+        updatable.update(dt)
+        for asteroid in asteroids:
+            if player.collides_with(asteroid):
+                log_event("player_hit")
+                print("Game over!")
+                sys.exit()
         pygame.display.flip()
 
 
