@@ -7,6 +7,7 @@ import constants
 from logger import log_state
 from player import Player
 from asteroidfield import AsteroidField
+from shot import Shot
 
 def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
@@ -18,13 +19,21 @@ def main():
     dt: float = 0.0
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+
+    #PLAYER
     Player.containers = (updatable, drawable)
     player = Player(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2)
+
+    # ASTEROID
     asteroids = pygame.sprite.Group()
     Asteroid.containers = (asteroids, updatable, drawable)
-
     AsteroidField.containers = (updatable)
     asteroid_field = AsteroidField()
+
+    #SHOT
+    shots = pygame.sprite.Group()
+    Shot.containers = (updatable, drawable, shots)
+
     while True:
         log_state()
 
